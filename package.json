@@ -1,0 +1,9 @@
+{
+  "name": "ml_demos",
+  "version": "1.0.0",
+  "description": "Machine learning demos for GitHub Pages",
+  "private": true,
+  "scripts": {
+    "test": "echo \"No tests specified\""
+  }
+}
