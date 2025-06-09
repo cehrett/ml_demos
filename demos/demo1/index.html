@@ -1,16 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo 1 - Basic Prediction</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo 1 - Polynomial Regression</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Demo 1: Basic Prediction</h1>
-    <p id="prediction">Prediction: ?</p>
-    <button id="predict-btn">Predict</button>
+  <h1>Predict House Prices</h1>
+  <div class="controls">
+    <label for="degree">Polynomial Degree:</label>
+    <select id="degree">
+      <option value="1" selected>1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+    </select>
 
-    <script src="script.js"></script>
+    <label for="predict-input">Sq Ft:</label>
+    <input type="number" id="predict-input" placeholder="1500" min="600" max="3000">
+    <button id="predict-btn">Predict Price</button>
+    <span id="predict-output"></span>
+  </div>
+
+  <canvas id="plot" width="600" height="400"></canvas>
+
+  <table id="data-table">
+    <thead>
+      <tr><th>Sq Ft</th><th>Price ($1000s)</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <p>Click on the chart to add training examples.</p>
+
+  <script src="script.js"></script>
 </body>
 </html>
