@@ -4,7 +4,7 @@ Welcome! This project hosts simple, interactive machine learning demos and noteb
 
 ## Viewing the Demos
 
-1. Open [the homepage](https://your-github-pages-url) or `index.html` in your browser.
+1. Open [the homepage](https://openai.github.io/ai-ml-demos-workshop) or `index.html` in your browser.
 2. Choose a demo from the list. Each demo lives in the `demos/` folder.
 
 ## Running Notebooks
