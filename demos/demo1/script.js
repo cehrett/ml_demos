@@ -43,6 +43,16 @@ document.getElementById('predict-btn').addEventListener('click', () => {
   }
 });
 
+// Reset button clears all data and predictions
+document.getElementById('reset-btn').addEventListener('click', () => {
+  points = [];
+  coeffs = [];
+  predictionPoint = null;
+  tableBody.innerHTML = '';
+  predictOutput.textContent = '';
+  draw();
+});
+
 function addTableRow(x, y) {
   const tr = document.createElement('tr');
   tr.innerHTML = `<td>${Math.round(x)}</td><td>${y.toFixed(1)}</td>`;
