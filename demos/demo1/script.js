@@ -19,6 +19,7 @@ let predictionPoint = null;
 const degreeSelect = document.getElementById('degree');
 const predictInput = document.getElementById('predict-input');
 const predictOutput = document.getElementById('predict-output');
+const equationOutput = document.getElementById('equation');
 const tableBody = document.querySelector('#data-table tbody');
 
 canvas.addEventListener('click', (e) => {
@@ -70,6 +71,7 @@ function updateModel() {
   coeffs = computeCoefficients(points, degree);
   predictionPoint = null;
   predictOutput.textContent = '';
+  equationOutput.textContent = coeffs.length ? `Equation: ${formatEquation(coeffs)}` : '';
   draw();
 }
 
@@ -114,6 +116,18 @@ function gaussianSolve(A, b) {
     }
   }
   return M.map(row => row[n]);
+}
+
+function formatEquation(coeffs) {
+  return coeffs
+    .map((c, i) => {
+      const absVal = Math.abs(c).toFixed(2);
+      if (i === 0) return c.toFixed(2);
+      const sign = c >= 0 ? ' + ' : ' - ';
+      const term = i === 1 ? 'x' : `x^${i}`;
+      return `${sign}${absVal}${term}`;
+    })
+    .join('');
 }
 
 function predict(x) {
