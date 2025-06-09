@@ -1,9 +1,41 @@
 body {
-    font-family: Arial, sans-serif;
-    padding: 1em;
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+  margin: 1em;
+  color: #333;
 }
 
-button {
-    padding: 0.5em 1em;
-    font-size: 1em;
+h1 {
+  text-align: center;
+  margin-bottom: 0.5em;
+}
+
+.controls {
+  margin-bottom: 1em;
+}
+
+#plot {
+  border: 1px solid #ccc;
+  display: block;
+  margin: 0 auto;
+  background-color: #fff;
+}
+
+table {
+  margin-top: 1em;
+  border-collapse: collapse;
+  width: 300px;
+}
+
+table, th, td {
+  border: 1px solid #ccc;
+}
+
+th, td {
+  padding: 0.25em 0.5em;
+  text-align: right;
+}
+
+th:first-child, td:first-child {
+  text-align: left;
 }
