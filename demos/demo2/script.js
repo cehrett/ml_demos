@@ -17,6 +17,7 @@ const K_VALUE = 3;
 let data = []; // {x, y, label}
 let model = null;
 let predictedPoint = null;
+const equationOutput = document.getElementById('equation');
 
 function currentMode() {
   return document.querySelector('input[name="mode"]:checked').value;
@@ -112,9 +113,19 @@ function predictPoint(x, y) {
 
 function updateModel() {
   const algo = document.getElementById('algorithm').value;
-  if (algo === 'logistic') model = trainLogistic(data);
-  else if (algo === 'knn') model = {data};
-  else model = buildTree(data, 0);
+  if (algo === 'logistic') {
+    model = trainLogistic(data);
+    if (model) {
+      equationOutput.textContent =
+        `p = 1/(1 + exp(-(${model.w0.toFixed(2)} + ${model.w1.toFixed(2)}*x + ${model.w2.toFixed(2)}*y)))`;
+    } else {
+      equationOutput.textContent = '';
+    }
+  } else {
+    equationOutput.textContent = '';
+    if (algo === 'knn') model = {data};
+    else model = buildTree(data, 0);
+  }
 }
 
 canvas.addEventListener('click', (e) => {
@@ -141,6 +152,7 @@ document.getElementById('reset-btn').addEventListener('click', () => {
   model = null;
   predictedPoint = null;
   document.getElementById('prediction').textContent = '';
+  equationOutput.textContent = '';
   draw();
 });
 

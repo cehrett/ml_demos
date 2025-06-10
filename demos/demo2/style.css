@@ -38,6 +38,13 @@ label {
   min-height: 1.2em;
 }
 
+#equation {
+  text-align: center;
+  font-weight: bold;
+  min-height: 1.2em;
+  margin-bottom: 0.5em;
+}
+
 .hint {
   text-align: center;
   margin-top: 0.5em;
