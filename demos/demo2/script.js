@@ -47,6 +47,36 @@ function drawAxes() {
   ctx.lineTo(width - margin, height - margin);
   ctx.stroke();
 
+  const numTicks = 5;
+  ctx.font = '12px sans-serif';
+  ctx.fillStyle = '#000';
+
+  // X-axis ticks and labels
+  for (let i = 0; i <= numTicks; i++) {
+    const x = xMin + (i / numTicks) * (xMax - xMin);
+    const px = dataToCanvasX(x);
+    ctx.beginPath();
+    ctx.moveTo(px, height - margin);
+    ctx.lineTo(px, height - margin + 5);
+    ctx.stroke();
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    ctx.fillText(x.toFixed(1), px, height - margin + 7);
+  }
+
+  // Y-axis ticks and labels
+  for (let i = 0; i <= numTicks; i++) {
+    const y = yMin + (i / numTicks) * (yMax - yMin);
+    const py = dataToCanvasY(y);
+    ctx.beginPath();
+    ctx.moveTo(margin - 5, py);
+    ctx.lineTo(margin, py);
+    ctx.stroke();
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(y.toFixed(1), margin - 7, py);
+  }
+
   ctx.font = '12px sans-serif';
   ctx.fillStyle = '#000';
   ctx.textAlign = 'center';
