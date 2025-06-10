@@ -17,6 +17,7 @@ const K_VALUE = 3;
 let data = []; // {x, y, label}
 let model = null;
 let predictedPoint = null;
+const tableBody = document.querySelector('#data-table tbody');
 
 function currentMode() {
   return document.querySelector('input[name="mode"]:checked').value;
@@ -36,6 +37,12 @@ function dataToCanvasX(x) {
 
 function dataToCanvasY(y) {
   return margin + (yMax - y) / (yMax - yMin) * (height - 2 * margin);
+}
+
+function addTableRow(x, y, label) {
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td>${x.toFixed(2)}</td><td>${y.toFixed(2)}</td><td>${label}</td>`;
+  tableBody.appendChild(tr);
 }
 
 function drawAxes() {
@@ -128,6 +135,7 @@ canvas.addEventListener('click', (e) => {
     document.getElementById('prediction').textContent = `Prediction: ${predictedPoint.label} (${Math.round(predictedPoint.prob*100)}% ripe)`;
   } else {
     data.push({x, y, label: mode});
+    addTableRow(x, y, mode);
     predictedPoint = null;
     document.getElementById('prediction').textContent = '';
     updateModel();
@@ -141,6 +149,7 @@ document.getElementById('reset-btn').addEventListener('click', () => {
   model = null;
   predictedPoint = null;
   document.getElementById('prediction').textContent = '';
+  tableBody.innerHTML = '';
   draw();
 });
 
