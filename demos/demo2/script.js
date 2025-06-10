@@ -196,10 +196,13 @@ document.getElementById('reset-btn').addEventListener('click', () => {
 });
 
 document.getElementById('algorithm').addEventListener('change', () => {
+  predictedPoint = null;
+  document.getElementById('prediction').textContent = '';
   updateModel();
   draw();
 });
 
+updateModel();
 draw();
 
 // ----- Models ----- //
