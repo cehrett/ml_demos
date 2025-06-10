@@ -11,6 +11,8 @@ const xMin = 0;   // green
 const xMax = 1;   // red
 const yMin = 2;   // cm
 const yMax = 10;  // cm
+// k value for the k-NN classifier
+const K_VALUE = 3;
 
 let data = []; // {x, y, label}
 let model = null;
@@ -180,8 +182,12 @@ function predictLogistic(model, x, y) {
 
 function predictKNN(model, x, y) {
   if (model.data.length === 0) return {label: 'unripe', prob: 0};
-  const k = Math.min(3, model.data.length);
-  const dists = model.data.map(p => ({p, d: (p.x - x) ** 2 + (p.y - y) ** 2}));
+  const k = Math.min(K_VALUE, model.data.length);
+  const dists = model.data.map(p => {
+    const dx = (p.x - x) / (xMax - xMin);
+    const dy = (p.y - y) / (yMax - yMin);
+    return {p, d: dx * dx + dy * dy};
+  });
   dists.sort((a, b) => a.d - b.d);
   let ripeCount = 0;
   for (let i = 0; i < k; i++) if (dists[i].p.label === 'ripe') ripeCount++;
